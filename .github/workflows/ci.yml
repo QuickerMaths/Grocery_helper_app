@@ -1,0 +1,78 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  quality-check:
+    name: 🛡️ Quality Check (Lint & Types)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js v22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        working-directory: apps/api
+
+      - name: 🎨 Run Linter
+        run: npm run lint
+
+      - name: 🏗️ Type Check (Build)
+        run: npm run build
+
+  backend-test:
+    name: 🧪 Backend Tests
+    runs-on: ubuntu-latest
+    needs: quality-check
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js v22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Generate Prisma Client
+        run: npx prisma generate
+        working-directory: apps/api
+
+      - name: 🧪 Run Unit Tests
+        run: npm run test --workspace=api
+
+  mobile-test:
+    name: 📱 Mobile Tests
+    runs-on: ubuntu-latest
+    needs: quality-check
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js v22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: 🧪 Run Unit Tests
+        run: npm run test --workspace=mobile
