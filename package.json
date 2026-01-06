@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "concurrently -n \"BACKEND,MOBILE\" -c \"blue,magenta\" \"npm run dev:api\" \"npm run dev:mobile\"",
     "dev:backend": "npm run start:dev --workspace=api",
-    "dev:mobile": "npm run start --workspace=mobile",
+    "dev:mobile": "npx expo start -c --workspace=mobile",
     "build": "npm run build --workspaces",
     "lint": "npm run lint --workspaces",
     "format": "prettier --write \"**/*.{ts,tsx,md,json}\"",
@@ -50,5 +50,8 @@
   "bugs": {
     "url": "https://github.com/QuickerMaths/Grocery_helper_app/issues"
   },
-  "homepage": "https://github.com/QuickerMaths/Grocery_helper_app#readme"
+  "homepage": "https://github.com/QuickerMaths/Grocery_helper_app#readme",
+  "overrides": {
+    "react": "^19.1.0"
+  }
 }
