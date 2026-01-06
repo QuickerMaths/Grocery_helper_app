@@ -1,29 +1,21 @@
-import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 
-export default function App() {
+export default function Home() {
   return (
-    <View style={styles.container}>
-      {/* This is the welcome message you requested */}
-      <Text style={styles.welcomeText}>Welcome to the Grocery helper app</Text>
+    <View className="flex-1 items-center justify-center bg-gray-100">
+      <View className="p-6 bg-white rounded-2xl shadow-lg w-3/4 items-center">
+        <Text className="text-2xl font-bold text-green-600 mb-2">Grocery Helper 🥦</Text>
+        <Text className="text-gray-500 text-center mb-6">
+          Your monorepo is working perfectly with NativeWind!
+        </Text>
 
-      <StatusBar style="auto" />
+        <TouchableOpacity
+          className="bg-blue-500 px-6 py-3 rounded-full active:bg-blue-600"
+          onPress={() => console.log('Pressed!')}
+        >
+          <Text className="text-white font-semibold">Get Started</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   )
 }
-
-// Basic styling to center the text and make it look good
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff', // White background
-    alignItems: 'center', // Horizontally center
-    justifyContent: 'center', // Vertically center
-  },
-  welcomeText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    textAlign: 'center',
-  },
-})
