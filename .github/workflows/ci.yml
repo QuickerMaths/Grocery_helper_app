@@ -21,7 +21,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm i
 
       - name: Generate Prisma Client
         run: npx prisma generate
@@ -72,7 +72,7 @@ jobs:
           cache: 'npm'
 
       - name: Install Dependencies
-        run: npm c
+        run: npm i
 
       - name: 🧪 Run Unit Tests
         run: npm run test --workspace=mobile
