@@ -81,6 +81,8 @@ All the recipes data is stored 3 tables.
 | updated_at        | TIMESTAMP | Timestamp of the last recipe update                       |
 | user_id           | UUID      | Foreign key referencing the `profiles` table              |
 
+Column `difficulty` can have values `Easy`, `Medium` or `Hard` (enumerated type).
+
 Example JSON:
 
 ```json
